@@ -1,0 +1,13 @@
+# Visual Studio
+*/bin/*
+*/obj/*
+.vs/*
+packages/*
+
+# Emacs
+*~
+\#*\#
+
+# Vim
+*.swp
+*.swo
