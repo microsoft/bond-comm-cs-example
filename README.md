@@ -34,3 +34,12 @@ Enter key.
 For questions about these examples, feel free to open an issue here. For
 questions about Bond or Bond Comm, please use the
 [main Bond repository](https://github.com/Microsoft/bond).
+
+# Code of Conduct
+
+This project has adopted the
+[Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the
+[Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
+or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any
+additional questions or comments.
