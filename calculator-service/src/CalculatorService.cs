@@ -72,12 +72,12 @@ namespace Bond.Comm.Examples.Calculator
         {
             // Provide a sink so you can get Bond's log messages and forward them to your favorite logging system.
             // There is a similar interface for per-connection and per-request metrics.
-            Log.SetHandler(new ConsoleLogger());
+            var logSink = new ConsoleLogger();
 
             // Bond has an abstraction for network protocols called a Transport. Epoxy is a custom protocol that is
             // lightweight and built into Bond.Comm. If it doesn't meet your needs, you can write your own Transports.
-            var transport = new EpoxyTransportBuilder().Construct();
-            var listener = transport.MakeListener(new IPEndPoint(IPAddress.Loopback, EpoxyTransport.DefaultPort));
+            var transport = new EpoxyTransportBuilder().SetLogSink(logSink).Construct();
+            var listener = transport.MakeListener(new IPEndPoint(IPAddress.Loopback, EpoxyTransport.DefaultInsecurePort));
             listener.AddService(new CalculatorService());
 
             // When this Task completes, your service will be up and accepting requests.
@@ -89,14 +89,11 @@ namespace Bond.Comm.Examples.Calculator
         }
 
         // Implements a sink for Bond's log messages. Write one to connect Bond to whatever log framework you prefer.
-        private class ConsoleLogger : LogHandler
+        private class ConsoleLogger : ILogSink
         {
-            public void Handle(LogSeverity severity, Exception exception, string format, object[] args)
+            public void Log(string message, LogSeverity severity, Exception exception)
             {
-                if (severity > LogSeverity.Debug)
-                {
-                    Console.WriteLine($"{severity}: " + string.Format(format, args));
-                }
+                Console.WriteLine($"{severity}: {message}");
             }
         }
     }

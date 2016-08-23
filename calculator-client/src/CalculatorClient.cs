@@ -14,7 +14,7 @@ namespace Bond.Comm.Examples.Calculator
             // Bond has an abstraction for network protocols called a Transport. Epoxy is a custom protocol that is
             // lightweight and built into Bond.Comm. If it doesn't meet your needs, you can write your own Transport.
             var transport = new EpoxyTransportBuilder().Construct();
-            var connection = transport.ConnectToAsync(new IPEndPoint(IPAddress.Loopback, EpoxyTransport.DefaultPort)).Result;
+            var connection = transport.ConnectToAsync("epoxy://127.0.0.1").Result;
 
             // For each service, Bond will generate a proxy with methods corresponding to the service methods you defined.
             var proxy = new CalculatorProxy<EpoxyConnection>(connection);
